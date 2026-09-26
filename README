@@ -1,0 +1,7 @@
+Base build for 2026-27 VEX Override Season
+include/ directory contains complementary files to those in src/
+auto.cpp, skills.cpp along with complmentary robot/auton.h, and robot/skills.h only contain headers and need actual functions for their respective usage
+globals.h and globals.cpp contains unitializaed and uninitialized global variables that are accessible in any file, just declare in header
+util.cpp and util.hpp contains the helper functions that utilize global variables to work in the main file
+
+main.cpp contains the main functions for driving.
