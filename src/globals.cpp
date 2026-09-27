@@ -9,6 +9,8 @@
 #include "pros/motors.hpp"
 #include "pros/rtos.hpp"
 #include <iostream>
+
+
 // define namespace bc lazy
 using namespace pros; // ion wanna type pros before everything :D
 
@@ -66,11 +68,14 @@ lemlib::ExpoDriveCurve steerCurve(2, 10, 1.019);
 
 // Chassis
 lemlib::Chassis chassis(drivetrain, lateralController, angularController, sensors, &throttleCurve, &steerCurve);
+
+//uninitialized until define starting position in main
 float chassisX;
 float chassisY;
 float chassisTheta;
-//future monte carlo 4 distance sensors
-// pros::Distance dNorth(13);
-// pros::Distance dEast(14);
-// pros::Distance dNorthW(15);
-// pros::Distance dWest(16);
+
+//sensors for mcl
+pros::Distance dNorth(13);
+pros::Distance dEast(14);
+pros::Distance dSouth(15);
+pros::Distance dWest(16);

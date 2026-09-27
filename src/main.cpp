@@ -15,6 +15,7 @@
 #include "robot/skills.h"
 #include <iostream>
 #include "util.hpp"
+// #include "monte.hpp"
 
 using namespace pros;
 void initialize() {
@@ -25,11 +26,16 @@ void initialize() {
 
     chassis.calibrate();    // Start calibration
     while (imu.is_calibrating()) delay(10); //doesnt advance anything until calibration is done to avoid errors
-
     chassis.setPose(0, 0, 0);    // Set initial pose
+	/*
+	//monteCarlo declaration
+	monte::mcl.attachChassis(&chassis);
+	monte::mcl.init({0, 0, 0});
+	monte::mcl.startTask();
+	*/
 	liftRotation.set_position(0);// sets default down lift position
 	armRotation.set_position(0); //sets default down arm postion
-
+	
     delay(10); //delay for courtesy
 
 	// Background LCD task 
@@ -75,7 +81,7 @@ void opcontrol() {
 			intake(false);//intake
 		else if (master.get_digital(E_CONTROLLER_DIGITAL_L2))
 			intake(true);//score
-	
+		
 		//Lift
 		if (master.get_digital(E_CONTROLLER_DIGITAL_R1))
 			lift(false);//lift Up
@@ -83,7 +89,7 @@ void opcontrol() {
 			lift(true);//Bring Down
 
 		if(master.get_digital(E_CONTROLLER_DIGITAL_A))
-			armToggle;//fold arm
+			armToggle();//fold arm
 
 		delay(20);// limit ts to not fry le brain
 	}

@@ -34,7 +34,8 @@ extern lemlib::Chassis chassis;
 extern float chassisX;
 extern float chassisY;
 extern float chassisTheta;
-// extern pros::Distance dNorth;
-// extern pros::Distance dEast;
-// extern pros::Distance dNorthW;
-// extern pros::Distance dWest;
+
+extern pros::Distance dNorth;
+extern pros::Distance dEast;
+extern pros::Distance dSouth;
+extern pros::Distance dWest;
