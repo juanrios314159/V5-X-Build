@@ -9,8 +9,6 @@
 #include "pros/motors.h"
 #include "pros/motors.hpp"
 #include "pros/rtos.hpp"
-// #include "robodash/core.h"
-// #include "robot/monte.hpp"
 #include "robot/auton.h"
 #include "robot/skills.h"
 #include <iostream>

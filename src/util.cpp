@@ -41,7 +41,7 @@ void armToggle(){
 }
 namespace meth{
 
-    constexpr double PI = 3.14159265358979323846; //local declaration. Leads to further preceision rather than using external class
+    const double PI = 3.14159265358979323846; //local declaration. Leads to further preceision rather than using external class
 
     double toRadians(double deg) { return deg * PI / 180.0; }//degrees to radians
     double toDegrees(double rad) { return rad * 180.0 / PI; }//radians to degrees

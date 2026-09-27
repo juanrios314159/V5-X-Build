@@ -7,11 +7,11 @@ void lift(bool reversed);
 void armToggle();
 
 namespace meth{
-    constexpr double PI = 3.14159265358979323846;
+    extern const double PI;
 
-    inline double toRadians(double deg) { return deg * PI / 180.0; }
-    inline double toDegrees(double rad) { return rad * 180.0 / PI; }
-    inline double clamp01(double v) { return std::max(0.0, std::min(1.0, v)); }
+    inline double toRadians(double deg);
+    inline double toDegrees(double rad);
+    inline double clamp01(double v);
 
     double wrap360(double deg);
     double wrap180(double deg);
