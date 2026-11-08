@@ -30,7 +30,10 @@ MotorGroup liftMotors({2, 3}, MotorGearset::red);  // Defines lift motors
 Motor scoreArm(4);
 bool armDown = true;
 // Sensors
-Imu imu(21); //inertia sensor
+
+
+OffsetIMU imu(21);
+
 Rotation liftRotation(1); 
 float liftPosition;
 Rotation armRotation(11);

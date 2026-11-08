@@ -6,6 +6,7 @@
 #include "pros/imu.hpp"
 #include "pros/motors.hpp"
 #include "pros/rotation.hpp"
+#include "util.hpp"
 
 extern pros::MotorGroup left_DT;
 extern pros::MotorGroup right_DT;
@@ -16,7 +17,18 @@ extern pros::MotorGroup liftMotors;
 extern pros::Motor scoreArm;
 extern bool armDown;
 
-extern pros::Imu imu;
+class OffsetIMU : public pros::Imu {
+    public:
+        OffsetIMU(uint8_t port) : pros::Imu(port) {}
+        double get_heading() {
+            return meth::wrap360(pros::Imu::get_heading() - 90.0);
+        }
+        double get_rotation() {
+            return pros::Imu::get_rotation() - 90.0;
+        }
+};
+
+extern OffsetIMU imu;
 extern pros::Rotation liftRotation;
 extern float liftPosition;
 extern pros::Rotation armRotation;
