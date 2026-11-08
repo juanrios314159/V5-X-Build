@@ -9,7 +9,8 @@
 #include "pros/motors.hpp"
 #include "pros/rtos.hpp"
 #include <iostream>
-
+#include "robot/auton.h"
+#include "globals.h"
 
 // define namespace bc lazy
 using namespace pros; // ion wanna type pros before everything :D
@@ -17,22 +18,22 @@ using namespace pros; // ion wanna type pros before everything :D
 // HARDWARE DECLARATION
 
 // Drivetrain
-MotorGroup left_DT({1, 2}, MotorGearset::blue);    // Defines left drive train motors
-MotorGroup right_DT({3, 4}, MotorGearset::blue);  // Defines right drive train motors
+MotorGroup left_DT({10, 9}, MotorGearset::blue);    // Defines left drive train motors
+MotorGroup right_DT({8, 7}, MotorGearset::blue);  // Defines right drive train motors
 lemlib::Drivetrain drivetrain(&left_DT, &right_DT, 12.25 /*adjust for width*/, 3.25, 450, 2);
 
 // Got that intake 
 MotorGroup intakeMotors({5, 6});  
 
 //Lift
-MotorGroup liftMotors({7, 8}, MotorGearset::red);  // Defines lift motors
-Motor scoreArm(9);
+MotorGroup liftMotors({2, 3}, MotorGearset::red);  // Defines lift motors
+Motor scoreArm(4);
 bool armDown = true;
 // Sensors
-Imu imu(10); //inertia sensor
-Rotation liftRotation(11); 
+Imu imu(21); //inertia sensor
+Rotation liftRotation(1); 
 float liftPosition;
-Rotation armRotation(12);
+Rotation armRotation(11);
 float armPosition;
 //Declaration of tracking wheels for odometry. Adjust when add.
 lemlib::OdomSensors sensors(nullptr, nullptr, nullptr, nullptr, &imu);
@@ -79,3 +80,11 @@ pros::Distance dNorth(13);
 pros::Distance dEast(14);
 pros::Distance dSouth(15);
 pros::Distance dWest(16);
+
+
+//GUI
+std::function<void()> selected_auton      = run_do_nothing;
+std::string           selected_auton_name = "Do Nothing";
+DriverSettings driver_settings{};
+double battery_percent  = 0.0;
+double imu_heading_deg  = 0.0;

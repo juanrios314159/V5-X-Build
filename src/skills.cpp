@@ -12,5 +12,15 @@
 #include <iostream>
 #include <random>
 
-void skills(){
+void driverSkills(){
 }
+
+
+void progSkills(){
+}
+
+
+std::vector<AutonOption> skills_options = {
+    {"Driver Skills",      driverSkills},
+    {"Programming Skills", progSkills},
+};

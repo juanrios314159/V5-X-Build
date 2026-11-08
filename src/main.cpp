@@ -13,11 +13,16 @@
 #include "robot/skills.h"
 #include <iostream>
 #include "util.hpp"
-// #include "monte.hpp"
+#include "pros/misc.hpp"
+#include "ui.h"
+#include "monte.hpp"
 
 using namespace pros;
 void initialize() {
     lcd::initialize(); //screen turns on
+	ui_init();
+    ui_start_background_task();
+
 	chassis.setBrakeMode(E_MOTOR_BRAKE_BRAKE);//sets drivetrain to brake so auton doesnt drift
 	liftMotors.set_brake_mode(E_MOTOR_BRAKE_HOLD); //lift must hold its position
 	scoreArm.set_brake_mode(E_MOTOR_BRAKE_HOLD); //arm must hold its position
@@ -25,12 +30,12 @@ void initialize() {
     chassis.calibrate();    // Start calibration
     while (imu.is_calibrating()) delay(10); //doesnt advance anything until calibration is done to avoid errors
     chassis.setPose(0, 0, 0);    // Set initial pose
-	/*
+	
 	//monteCarlo declaration
 	monte::mcl.attachChassis(&chassis);
 	monte::mcl.init({0, 0, 0});
 	monte::mcl.startTask();
-	*/
+	
 	liftRotation.set_position(0);// sets default down lift position
 	armRotation.set_position(0); //sets default down arm postion
 	
@@ -64,7 +69,9 @@ void initialize() {
 void disabled() {}
 void competition_initialize() {
 }
-void autonomous() {}
+void autonomous() {
+	selected_auton();
+}
 void opcontrol() {
 	chassis.setBrakeMode(E_MOTOR_BRAKE_COAST); //ts so we can go ZOOOOOOOM
 	Controller master(pros::E_CONTROLLER_MASTER); //declar controller so we can take intput

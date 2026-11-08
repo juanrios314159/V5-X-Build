@@ -16,7 +16,7 @@ void lift(bool reversed){
         armToggle();//makes sure arm extended when going up
     if (reversed && (liftPosition > liftDownPostion)){ //only goes down until winch unspools
         liftMotors.move_velocity(-100);
-    }else if(!reversed/* && (liftPosition < liftUpPosition)*/){//extends indefinately. Should fix with max extended degree but need to test
+    }else if(!reversed && (liftPosition < liftUpPosition)){//extends indefinately. Should fix with max extended degree but need to test
         liftMotors.move_velocity(100);
     }else{
         liftMotors.move_velocity(0);//specifcally resets to 0 when lift is fully down
@@ -40,8 +40,6 @@ void armToggle(){
     }
 }
 namespace meth{
-
-    const double PI = 3.14159265358979323846; //local declaration. Leads to further preceision rather than using external class
 
     double toRadians(double deg) { return deg * PI / 180.0; }//degrees to radians
     double toDegrees(double rad) { return rad * 180.0 / PI; }//radians to degrees
